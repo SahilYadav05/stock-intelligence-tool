@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/shadow-runtime-manifest.v1.schema.json",
+  "title": "Shadow Runtime Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "manifest_version",
+    "dataset_id",
+    "model_artifact_path",
+    "model_artifact_sha256",
+    "policy_artifact_path",
+    "policy_artifact_sha256",
+    "prediction_collection_enabled",
+    "runtime_mode",
+    "official_signal_available",
+    "precise_probability_display_allowed",
+    "automatic_trading_enabled",
+    "live_signal_kill_switch_required",
+    "sha256"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "manifest_version": { "const": "nifty_shadow_runtime.v1" },
+    "prediction_collection_enabled": { "const": true },
+    "official_signal_available": { "const": false },
+    "precise_probability_display_allowed": { "const": false },
+    "automatic_trading_enabled": { "const": false },
+    "live_signal_kill_switch_required": { "const": true },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

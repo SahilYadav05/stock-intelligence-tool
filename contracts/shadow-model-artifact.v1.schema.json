@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/shadow-model-artifact.v1.schema.json",
+  "title": "Shadow Model Artifact",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_version",
+    "dataset_id",
+    "candidate",
+    "atr_multiplier",
+    "horizon_minutes",
+    "feature_names",
+    "feature_version",
+    "feature_set_hash",
+    "scaler_mean",
+    "scaler_scale",
+    "classes",
+    "coefficients",
+    "intercepts",
+    "calibration",
+    "serialization",
+    "shadow_only",
+    "approved_for_live_inference",
+    "sha256"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "artifact_version": { "const": "nifty_shadow_logistic_1p5.v1" },
+    "candidate": { "const": "multinomial_logistic_unweighted" },
+    "atr_multiplier": { "const": "1.5" },
+    "horizon_minutes": { "const": 60 },
+    "feature_names": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "feature_version": { "type": "string", "minLength": 1 },
+    "feature_set_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "serialization": { "const": "SAFE_JSON_PARAMETERS_ONLY" },
+    "shadow_only": { "const": true },
+    "approved_for_live_inference": { "const": false },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

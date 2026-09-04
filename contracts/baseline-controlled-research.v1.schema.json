@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/baseline-controlled-research.v1.schema.json",
+  "title": "Baseline-controlled direction-specific research report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "step18f_version",
+    "dataset_id",
+    "context_bundle_sha256",
+    "objective",
+    "baseline_control",
+    "selected_models",
+    "utility_diagnostics",
+    "historical_simulated_live_replay",
+    "research_gate",
+    "uncertainty_controls",
+    "model_artifact_created",
+    "approved_for_live_inference",
+    "precise_probability_display_allowed",
+    "official_signal_available",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "step18f_version": {"const": "baseline_controlled_directional_research.v1"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "context_bundle_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "objective": {"type": "object"},
+    "baseline_control": {"type": "object"},
+    "selected_models": {"type": "object"},
+    "utility_diagnostics": {"type": "object"},
+    "historical_simulated_live_replay": {"type": "object"},
+    "research_gate": {"type": "object"},
+    "uncertainty_controls": {
+      "type": "object",
+      "required": ["uncertainty_eliminated"],
+      "properties": {"uncertainty_eliminated": {"const": false}}
+    },
+    "model_artifact_created": {"const": false},
+    "approved_for_live_inference": {"const": false},
+    "precise_probability_display_allowed": {"const": false},
+    "official_signal_available": {"const": false},
+    "automatic_trading_enabled": {"const": false}
+  },
+  "additionalProperties": true
+}

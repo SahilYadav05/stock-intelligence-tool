@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "historical-dataset.v1",
+  "title": "Historical Dataset Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataset_id", "instrument_id", "source_timeframe", "provider",
+    "source_sha256", "acquired_at", "starts_at", "ends_at", "quality"
+  ],
+  "properties": {
+    "dataset_id": { "type": "string", "format": "uuid" },
+    "instrument_id": { "type": "string", "minLength": 1 },
+    "source_timeframe": { "const": "1m" },
+    "provider": { "type": "string", "minLength": 1 },
+    "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "acquired_at": { "type": "string", "format": "date-time" },
+    "starts_at": { "type": "string", "format": "date-time" },
+    "ends_at": { "type": "string", "format": "date-time" },
+    "quality": {
+      "type": "object",
+      "required": ["status", "total_rows", "missing_minutes", "errors", "warnings"],
+      "properties": {
+        "status": { "enum": ["PASS", "DEGRADED", "REJECTED"] },
+        "total_rows": { "type": "integer", "minimum": 0 },
+        "missing_minutes": { "type": "integer", "minimum": 0 },
+        "errors": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

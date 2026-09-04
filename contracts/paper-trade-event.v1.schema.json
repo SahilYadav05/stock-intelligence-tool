@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paper-trade-event.v1",
+  "title": "Append-Only Paper Trade Lifecycle Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "event_id", "paper_trade_id", "signal_id", "event_type", "status",
+    "occurred_at", "observed_price", "pnl_points", "reason", "unit"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "event_id": { "type": "string", "format": "uuid" },
+    "paper_trade_id": { "type": "string", "format": "uuid" },
+    "signal_id": { "type": "string", "minLength": 1 },
+    "event_type": { "enum": ["CREATED", "OPENED", "TARGET_1_HIT", "STOP_HIT", "EXPIRED", "INVALIDATED"] },
+    "status": { "enum": ["PLANNED", "OPEN", "TARGET_1_HIT", "STOP_HIT", "EXPIRED", "INVALIDATED"] },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "observed_price": { "type": ["string", "null"] },
+    "pnl_points": { "type": ["string", "null"] },
+    "reason": { "type": "string", "minLength": 1 },
+    "unit": { "const": "NIFTY_INDEX_POINTS" }
+  }
+}

@@ -1,0 +1,69 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+*.egg-info/
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
+/dist/
+/.wrangler/
+/.sites-runtime/
+/outputs/
+/work/
+/data/
+/artifacts/
+/config/*.local.json
+
+# local milestone archives and generated audit captures
+/pre-step*.zip
+/step11-source.zip
+/step11-project-tree.txt
+/step11-package.txt
+/step11-git-status.txt
+/step11-env-example.txt
+/step15-summary.json
+
+# Accidental local repositories
+/SahilYadav05/
+/stock-intelligence-tool/
+/project_tree.txt

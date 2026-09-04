@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "exchange": "NSE",
+  "segment": "CAPITAL_MARKET",
+  "timezone": "Asia/Kolkata",
+  "verified_from": "2024-01-01",
+  "verified_through": "2026-08-25",
+  "regular_session": {
+    "open": "09:15",
+    "close": "15:30"
+  },
+  "continuous_session_rules": [
+    {
+      "effective_from": "0001-01-01",
+      "open": "09:15",
+      "close": "15:30",
+      "reason": "LEGACY_CONTINUOUS_EQUITY_SESSION"
+    },
+    {
+      "effective_from": "2026-08-03",
+      "open": "09:15",
+      "close": "15:15",
+      "reason": "CAS_ELIGIBLE_CONSTITUENTS_LEAVE_CONTINUOUS_TRADING"
+    }
+  ],
+  "closing_auction_rules": [
+    {
+      "effective_from": "2026-08-03",
+      "reference_starts": "15:15",
+      "order_entry_starts": "15:20",
+      "order_restriction_starts": "15:25",
+      "matching_starts": "15:30",
+      "matching_ends": "15:35",
+      "reason": "NSE_CLOSING_AUCTION_SESSION_GO_LIVE"
+    }
+  ],
+  "holidays": [
+    "2024-01-22",
+    "2024-01-26",
+    "2024-03-08",
+    "2024-03-25",
+    "2024-03-29",
+    "2024-04-11",
+    "2024-04-17",
+    "2024-05-01",
+    "2024-05-20",
+    "2024-06-17",
+    "2024-07-17",
+    "2024-08-15",
+    "2024-10-02",
+    "2024-11-01",
+    "2024-11-15",
+    "2024-11-20",
+    "2024-12-25",
+    "2025-02-26",
+    "2025-03-14",
+    "2025-03-31",
+    "2025-04-10",
+    "2025-04-14",
+    "2025-04-18",
+    "2025-05-01",
+    "2025-08-15",
+    "2025-08-27",
+    "2025-10-02",
+    "2025-10-22",
+    "2025-11-05",
+    "2025-12-25",
+    "2026-01-15",
+    "2026-01-26",
+    "2026-03-03",
+    "2026-03-26",
+    "2026-03-31",
+    "2026-04-03",
+    "2026-04-14",
+    "2026-05-01",
+    "2026-05-28",
+    "2026-06-26"
+  ],
+  "special_sessions": {
+    "2025-02-01": {
+      "open": "09:15",
+      "close": "15:30"
+    },
+    "2025-10-21": {
+      "open": "13:45",
+      "close": "14:45"
+    },
+    "2026-02-01": {
+      "open": "09:15",
+      "close": "15:30"
+    }
+  },
+  "ignored_provider_observation_windows": {
+    "2024-01-20": [
+      {
+        "open": "00:00",
+        "close": "23:59",
+        "reason": "SPECIAL_DR_SESSION_EXCLUDED_FROM_REGULAR_SESSION_RESEARCH"
+      }
+    ],
+    "2024-03-02": [
+      {
+        "open": "00:00",
+        "close": "23:59",
+        "reason": "SPECIAL_DR_SESSION_EXCLUDED_FROM_REGULAR_SESSION_RESEARCH"
+      }
+    ],
+    "2024-05-18": [
+      {
+        "open": "00:00",
+        "close": "23:59",
+        "reason": "SPECIAL_DR_SESSION_EXCLUDED_FROM_REGULAR_SESSION_RESEARCH"
+      }
+    ],
+    "2024-11-01": [
+      {
+        "open": "00:00",
+        "close": "23:59",
+        "reason": "SPECIAL_MUHURAT_SESSION_EXCLUDED_FROM_REGULAR_SESSION_RESEARCH"
+      }
+    ],
+    "2025-10-21": [
+      {
+        "open": "11:17",
+        "close": "11:18",
+        "reason": "PROVIDER_INDEX_OBSERVATION_OUTSIDE_OFFICIAL_MUHURAT_SESSION"
+      },
+      {
+        "open": "11:40",
+        "close": "11:41",
+        "reason": "PROVIDER_INDEX_OBSERVATION_OUTSIDE_OFFICIAL_MUHURAT_SESSION"
+      },
+      {
+        "open": "13:30",
+        "close": "13:45",
+        "reason": "CAPITAL_MARKET_PRE_OPEN_NOT_CONTINUOUS_TRADING"
+      },
+      {
+        "open": "14:45",
+        "close": "14:47",
+        "reason": "PROVIDER_INDEX_OBSERVATION_OUTSIDE_OFFICIAL_MUHURAT_SESSION"
+      }
+    ]
+  },
+  "research_excluded_sessions": {
+    "2024-07-19": {
+      "reason": "ANGELONE_SOURCE_GAP_11_11_TO_11_19_IST",
+      "policy": "ENTIRE_SESSION_QUARANTINED_TO_AVOID_PARTIAL_DAY_FEATURE_CONTAMINATION",
+      "evidence_report": "artifacts/research/history/8157e75b-e13d-5a6d-ac7a-14856f6fe6dd.json"
+    }
+  },
+  "source_documents": [
+    {
+      "label": "NSE capital-market holidays 2024",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR59722.pdf"
+    },
+    {
+      "label": "NSE revised trading holiday on 2024-01-22",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR60338.pdf"
+    },
+    {
+      "label": "NSE special DR trading session on 2024-01-20",
+      "url": "https://nsearchives.nseindia.com/content/circulars/MSD59999.pdf"
+    },
+    {
+      "label": "NSE special DR trading session on 2024-03-02",
+      "url": "https://nsearchives.nseindia.com/content/circulars/MSD60677.pdf"
+    },
+    {
+      "label": "NSE trading holiday on 2024-05-20",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR61518.pdf"
+    },
+    {
+      "label": "NSE special DR trading session on 2024-05-18",
+      "url": "https://nsearchives.nseindia.com/content/circulars/MSD61893.pdf"
+    },
+    {
+      "label": "NSE Muhurat trading session 2024",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR64628.pdf"
+    },
+    {
+      "label": "NSE trading holiday on 2024-11-20",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR64960.pdf"
+    },
+    {
+      "label": "NSE capital-market holidays 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR65587.pdf"
+    },
+    {
+      "label": "NSE Budget live trading session 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR65729.pdf"
+    },
+    {
+      "label": "NSE Muhurat trading session 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/FAOP70320.pdf"
+    },
+    {
+      "label": "NSE capital-market holidays 2026",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR71775.pdf"
+    },
+    {
+      "label": "NSE Budget live trading session 2026",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR72349.pdf"
+    },
+    {
+      "label": "NSE closing-auction operational guidelines",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR73362.pdf"
+    },
+    {
+      "label": "NSE closing-auction go-live from 2026-08-03",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR75479.pdf"
+    },
+    {
+      "label": "NSE current market holiday register",
+      "url": "https://www.nseindia.com/resources/exchange-communication-holidays"
+    }
+  ]
+}

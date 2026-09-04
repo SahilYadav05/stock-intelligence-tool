@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/trade-aligned-research.v1.schema.json",
+  "title": "Step 18B Trade-Aligned Model Research",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "step18b_version",
+    "experiment_id",
+    "dataset_id",
+    "target_definition",
+    "feature_architecture",
+    "probability_diagnostics",
+    "historical_simulated_live_replay",
+    "research_gate",
+    "known_data_limitations",
+    "existing_step17_runtime_modified",
+    "existing_step18_report_modified",
+    "model_artifact_created",
+    "approved_for_live_inference",
+    "precise_probability_display_allowed",
+    "official_signal_available",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "step18b_version": { "const": "trade_aligned_model_research.v1.1" },
+    "existing_step17_runtime_modified": { "const": false },
+    "existing_step18_report_modified": { "const": false },
+    "model_artifact_created": { "const": false },
+    "approved_for_live_inference": { "const": false },
+    "precise_probability_display_allowed": { "const": false },
+    "official_signal_available": { "const": false },
+    "automatic_trading_enabled": { "const": false }
+  }
+}

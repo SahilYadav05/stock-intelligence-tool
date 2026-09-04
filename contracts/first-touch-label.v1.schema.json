@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "first-touch-label.v1",
+  "title": "NIFTY 5m Volatility-Adjusted First-Touch Label v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "label_id", "label_version", "label_definition_hash",
+    "dataset_id", "instrument_id", "decision_candle_id", "decision_time",
+    "reference_close", "atr_at_decision", "up_barrier", "down_barrier",
+    "window_ends_at", "outcome", "first_touch_at", "first_touch_candle_id",
+    "future_candle_ids", "eligible", "exclusion_reason"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "label_id": { "type": "string", "format": "uuid" },
+    "label_version": { "const": "nifty_5m_atr_first_touch.v1" },
+    "label_definition_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "dataset_id": { "type": "string", "format": "uuid" },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_candle_id": { "type": "string", "format": "uuid" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "reference_close": { "type": "string" },
+    "atr_at_decision": { "type": ["string", "null"] },
+    "up_barrier": { "type": ["string", "null"] },
+    "down_barrier": { "type": ["string", "null"] },
+    "window_ends_at": { "type": "string", "format": "date-time" },
+    "outcome": { "enum": ["UP", "DOWN", "NEITHER", "AMBIGUOUS", null] },
+    "first_touch_at": { "type": ["string", "null"], "format": "date-time" },
+    "first_touch_candle_id": { "type": ["string", "null"] },
+    "future_candle_ids": { "type": "array", "items": { "type": "string" }, "maxItems": 12 },
+    "eligible": { "type": "boolean" },
+    "exclusion_reason": { "type": ["string", "null"] }
+  }
+}

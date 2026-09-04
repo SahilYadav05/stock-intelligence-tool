@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "market-state-snapshot.v1",
+  "title": "Market State Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "snapshot_id", "instrument_id", "decision_time", "created_at",
+    "data_as_of", "data_mode", "data_status", "primary_timeframe",
+    "primary_candle_id", "context_15m_candle_id", "context_1h_candle_id",
+    "recent_primary_candle_ids", "developing_candle_id", "model_input_candle_ids",
+    "source_watermark", "candle_revision_checksum", "live_inference_eligible", "blockers"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "snapshot_id": { "type": "string", "format": "uuid" },
+    "instrument_id": { "type": "string", "minLength": 1 },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "data_as_of": { "type": "string", "format": "date-time" },
+    "data_mode": { "enum": ["REPLAY", "LIVE"] },
+    "data_status": {
+      "enum": ["DISCONNECTED", "CONNECTING", "RECOVERING", "LIVE", "DELAYED", "STALE", "MARKET_CLOSED"]
+    },
+    "primary_timeframe": { "const": "5m" },
+    "primary_candle_id": { "type": "string", "format": "uuid" },
+    "context_15m_candle_id": { "$ref": "#/$defs/nullableUuid" },
+    "context_1h_candle_id": { "$ref": "#/$defs/nullableUuid" },
+    "recent_primary_candle_ids": {
+      "type": "array",
+      "items": { "type": "string", "format": "uuid" }
+    },
+    "developing_candle_id": { "$ref": "#/$defs/nullableUuid" },
+    "model_input_candle_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "format": "uuid" }
+    },
+    "source_watermark": { "type": "string", "minLength": 1 },
+    "candle_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "live_inference_eligible": { "type": "boolean" },
+    "blockers": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "nullableUuid": {
+      "oneOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }]
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/locked-shadow-research.v1.schema.json",
+  "title": "Locked Shadow Research Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "step16_version",
+    "dataset_id",
+    "experiment_id",
+    "created_at",
+    "locked_specification",
+    "nested_timeline",
+    "calibration_method_comparison",
+    "selected_calibration_method",
+    "historical_backtest_probability_metrics",
+    "signal_backtest",
+    "shadow_artifact",
+    "forward_confirmation_required",
+    "approved_for_live_inference",
+    "precise_probability_display_allowed",
+    "official_signal_available",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "step16_version": { "const": "locked_shadow_research.v1" },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "experiment_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "locked_specification": {
+      "type": "object",
+      "required": ["atr_multiplier", "horizon_minutes", "candidate"],
+      "properties": {
+        "atr_multiplier": { "const": "1.5" },
+        "horizon_minutes": { "const": 60 },
+        "candidate": { "const": "multinomial_logistic_unweighted" }
+      }
+    },
+    "calibration_method_comparison": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "selected_calibration_method": {
+      "enum": ["identity", "temperature", "prior_shrinkage", "vector_scaling"]
+    },
+    "signal_backtest": {
+      "type": "object",
+      "required": [
+        "policy",
+        "evaluation_decisions",
+        "trade_count",
+        "wait_counts",
+        "hypothetical_index_points_only",
+        "rupee_pnl_available",
+        "trades"
+      ],
+      "properties": {
+        "hypothetical_index_points_only": { "const": true },
+        "rupee_pnl_available": { "const": false }
+      }
+    },
+    "shadow_artifact": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256",
+        "artifact_version",
+        "shadow_only",
+        "approved_for_live_inference",
+        "safe_json_parameters_only"
+      ],
+      "properties": {
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "shadow_only": { "const": true },
+        "approved_for_live_inference": { "const": false },
+        "safe_json_parameters_only": { "const": true }
+      }
+    },
+    "historical_period_previously_used_for_target_screening": { "const": true },
+    "forward_confirmation_required": { "const": true },
+    "approved_for_live_inference": { "const": false },
+    "precise_probability_display_allowed": { "const": false },
+    "official_signal_available": { "const": false },
+    "automatic_trading_enabled": { "const": false },
+    "news_used": { "const": false },
+    "nifty_spot_volume_used": { "const": false }
+  }
+}

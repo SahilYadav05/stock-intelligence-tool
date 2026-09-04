@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "release-readiness.v1",
+  "title": "Live Signal Release Readiness v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "evaluated_at", "status", "signal_allowed", "blockers",
+    "warnings", "release_id", "exact_snapshot_match", "security_mode", "kill_switch_active"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "evaluated_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["READY", "BLOCKED"] },
+    "signal_allowed": { "type": "boolean" },
+    "blockers": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "warnings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "release_id": { "type": ["string", "null"] },
+    "exact_snapshot_match": { "type": "boolean" },
+    "security_mode": { "enum": ["DISABLED", "BEARER"] },
+    "kill_switch_active": { "type": "boolean" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "READY" } } },
+      "then": {
+        "properties": {
+          "signal_allowed": { "const": true },
+          "blockers": { "maxItems": 0 },
+          "exact_snapshot_match": { "const": true },
+          "kill_switch_active": { "const": false }
+        }
+      }
+    }
+  ]
+}

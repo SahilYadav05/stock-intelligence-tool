@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "price-action-analysis.v1.schema.json",
+  "title": "Causal price-action analysis",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "candle_revision_checksum",
+    "instrument_id",
+    "decision_time",
+    "generated_at",
+    "version",
+    "bias",
+    "setup",
+    "confluence_score",
+    "evidence_grade",
+    "structure_5m",
+    "trend_5m",
+    "trend_15m",
+    "trend_1h",
+    "volatility_regime",
+    "patterns",
+    "support_levels",
+    "resistance_levels",
+    "reasons",
+    "contradictory_evidence",
+    "trade_plan",
+    "blockers",
+    "research_only",
+    "official_signal",
+    "calibrated_probability",
+    "automatic_execution"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "candle_revision_checksum": { "type": "string", "minLength": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "version": { "const": "causal_market_structure.v1" },
+    "bias": { "enum": ["BULLISH", "BEARISH", "NEUTRAL", "UNAVAILABLE"] },
+    "setup": {
+      "enum": [
+        "BUY_TRIGGER",
+        "SELL_TRIGGER",
+        "BULLISH_WATCH",
+        "BEARISH_WATCH",
+        "WAIT",
+        "UNAVAILABLE"
+      ]
+    },
+    "confluence_score": { "type": "integer", "minimum": -100, "maximum": 100 },
+    "evidence_grade": { "enum": ["STRONG", "MODERATE", "WEAK", "NO_EDGE", "UNAVAILABLE"] },
+    "structure_5m": { "type": "string" },
+    "trend_5m": { "type": "string" },
+    "trend_15m": { "type": "string" },
+    "trend_1h": { "type": "string" },
+    "volatility_regime": { "type": "string" },
+    "patterns": { "type": "array", "items": { "type": "string" } },
+    "support_levels": { "$ref": "#/$defs/levels" },
+    "resistance_levels": { "$ref": "#/$defs/levels" },
+    "reasons": { "type": "array", "items": { "type": "string" } },
+    "contradictory_evidence": { "type": "array", "items": { "type": "string" } },
+    "trade_plan": { "anyOf": [{ "$ref": "#/$defs/tradePlan" }, { "type": "null" }] },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "research_only": { "const": true },
+    "official_signal": { "const": false },
+    "calibrated_probability": { "type": "null" },
+    "automatic_execution": { "const": false }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "decimal": { "type": "string", "pattern": "^-?[0-9]+\\.[0-9]{2}$" },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["price", "kind", "strength", "touches"],
+        "properties": {
+          "price": { "$ref": "#/$defs/decimal" },
+          "kind": { "type": "string" },
+          "strength": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "touches": { "type": "integer", "minimum": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "tradePlan": {
+      "type": "object",
+      "required": [
+        "direction", "trigger", "entry_low", "entry_high", "stop", "invalidation",
+        "target1", "target2", "target3", "risk_points", "target1_reward_risk",
+        "target2_reward_risk", "target3_reward_risk", "expiry_bars", "blockers"
+      ],
+      "properties": {
+        "direction": { "enum": ["BUY", "SELL"] },
+        "trigger": { "$ref": "#/$defs/decimal" },
+        "entry_low": { "$ref": "#/$defs/decimal" },
+        "entry_high": { "$ref": "#/$defs/decimal" },
+        "stop": { "$ref": "#/$defs/decimal" },
+        "invalidation": { "$ref": "#/$defs/decimal" },
+        "target1": { "$ref": "#/$defs/decimal" },
+        "target2": { "$ref": "#/$defs/decimal" },
+        "target3": { "$ref": "#/$defs/decimal" },
+        "risk_points": { "$ref": "#/$defs/decimal" },
+        "target1_reward_risk": { "const": 1.25 },
+        "target2_reward_risk": { "const": 2.0 },
+        "target3_reward_risk": { "const": 3.0 },
+        "expiry_bars": { "type": "integer", "minimum": 1 },
+        "blockers": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}

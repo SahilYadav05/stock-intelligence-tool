@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "prediction-assessment.v1",
+  "title": "Later Live Prediction Outcome Assessment v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "assessment_id", "prediction_id", "signal_id", "snapshot_id",
+    "instrument_id", "decision_time", "assessed_at", "predicted_outcome",
+    "actual_outcome", "probabilities", "correct", "first_touch_at", "label_version",
+    "input_revision_checksum"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "assessment_id": { "type": "string", "format": "uuid" },
+    "prediction_id": { "type": "string", "minLength": 1 },
+    "signal_id": { "type": "string", "minLength": 1 },
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "assessed_at": { "type": "string", "format": "date-time" },
+    "predicted_outcome": { "enum": ["UP", "DOWN", "NEITHER"] },
+    "actual_outcome": { "enum": ["UP", "DOWN", "NEITHER"] },
+    "probabilities": { "type": "object" },
+    "correct": { "type": "boolean" },
+    "first_touch_at": { "type": ["string", "null"], "format": "date-time" },
+    "label_version": { "const": "nifty_5m_atr_first_touch.v1" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

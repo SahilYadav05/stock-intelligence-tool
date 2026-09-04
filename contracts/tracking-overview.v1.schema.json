@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tracking-overview.v1",
+  "title": "Paper Research and Prediction Tracking Overview v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "instrument_id", "generated_at", "analytics", "monitoring",
+    "paper_trades", "recent_paper_events", "paper_only", "automatic_execution"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "analytics": { "type": "object" },
+    "monitoring": { "type": "object" },
+    "paper_trades": { "type": "array", "items": { "type": "object" } },
+    "recent_paper_events": { "type": "array", "items": { "type": "object" } },
+    "paper_only": { "const": true },
+    "automatic_execution": { "const": false }
+  }
+}

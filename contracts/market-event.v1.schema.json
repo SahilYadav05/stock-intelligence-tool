@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "market-event.v1",
+  "title": "Canonical Market Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "instrument_id",
+    "event_type",
+    "provider",
+    "provider_instrument_id",
+    "connection_epoch",
+    "provider_sequence",
+    "provider_sequence_scope",
+    "provider_sequence_is_contiguous",
+    "provider_event_time",
+    "provider_send_time",
+    "server_arrival_time",
+    "normalized_event_time",
+    "timestamp_source",
+    "price",
+    "last_quantity",
+    "cumulative_volume",
+    "bid_price",
+    "ask_price",
+    "currency",
+    "raw_payload_hash",
+    "deduplication_key",
+    "quality_codes",
+    "supersedes_event_id"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "event_id": { "type": "string", "format": "uuid" },
+    "instrument_id": { "type": "string", "minLength": 1 },
+    "event_type": {
+      "enum": ["INDEX_VALUE", "TRADE", "QUOTE", "HEARTBEAT", "CORRECTION"]
+    },
+    "provider": { "type": "string", "minLength": 1 },
+    "provider_instrument_id": { "type": "string", "minLength": 1 },
+    "connection_epoch": { "type": "string", "minLength": 1 },
+    "provider_sequence": { "type": ["integer", "null"], "minimum": 0 },
+    "provider_sequence_scope": { "type": ["string", "null"], "minLength": 1 },
+    "provider_sequence_is_contiguous": { "type": "boolean" },
+    "provider_event_time": { "type": ["string", "null"], "format": "date-time" },
+    "provider_send_time": { "type": ["string", "null"], "format": "date-time" },
+    "server_arrival_time": { "type": "string", "format": "date-time" },
+    "normalized_event_time": { "type": "string", "format": "date-time" },
+    "timestamp_source": { "enum": ["EXCHANGE", "PROVIDER", "ARRIVAL"] },
+    "price": { "$ref": "#/$defs/decimalOrNull" },
+    "last_quantity": { "$ref": "#/$defs/decimalOrNull" },
+    "cumulative_volume": { "$ref": "#/$defs/decimalOrNull" },
+    "bid_price": { "$ref": "#/$defs/decimalOrNull" },
+    "ask_price": { "$ref": "#/$defs/decimalOrNull" },
+    "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
+    "raw_payload_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "deduplication_key": { "type": "string", "minLength": 1 },
+    "quality_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "ARRIVAL_TIME_FALLBACK",
+          "LATE_ARRIVAL",
+          "NO_PROVIDER_SEQUENCE",
+          "PROVIDER_TIMESTAMP"
+        ]
+      }
+    },
+    "supersedes_event_id": { "type": ["string", "null"], "format": "uuid" }
+  },
+  "$defs": {
+    "decimalOrNull": {
+      "type": ["string", "null"],
+      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$"
+    }
+  }
+}

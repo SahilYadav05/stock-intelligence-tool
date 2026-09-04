@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ml-training-run.v1",
+  "title": "Chronological ML Research Run v1",
+  "type": "object",
+  "required": [
+    "schema_version", "run_id", "research_version", "research_identity",
+    "dataset_id", "created_at", "feature_version", "feature_set_hash",
+    "label_version", "label_definition_hash", "runtime_versions", "config", "dataset", "folds",
+    "prior_baseline_metrics", "candidates", "selected_research_candidate",
+    "replay_prediction_count", "replay_assessment_count",
+    "approved_for_live_inference", "calibrated", "official_signal_available"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "format": "uuid" },
+    "research_version": { "const": "ml_research.v1" },
+    "research_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "dataset_id": { "type": "string", "format": "uuid" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "feature_version": { "const": "price_features.v1" },
+    "feature_set_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "label_version": { "const": "nifty_5m_atr_first_touch.v1" },
+    "label_definition_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "runtime_versions": {
+      "type": "object",
+      "required": ["python", "numpy", "scikit_learn"],
+      "additionalProperties": false,
+      "properties": {
+        "python": { "type": "string" },
+        "numpy": { "type": "string" },
+        "scikit_learn": { "type": "string" }
+      }
+    },
+    "config": { "type": "object" },
+    "dataset": { "type": "object" },
+    "folds": { "type": "array", "minItems": 2 },
+    "prior_baseline_metrics": { "type": "object" },
+    "candidates": { "type": "array", "minItems": 2 },
+    "selected_research_candidate": { "type": "string" },
+    "replay_prediction_count": { "type": "integer", "minimum": 1 },
+    "replay_assessment_count": { "type": "integer", "minimum": 1 },
+    "approved_for_live_inference": { "const": false },
+    "calibrated": { "const": false },
+    "official_signal_available": { "const": false }
+  }
+}

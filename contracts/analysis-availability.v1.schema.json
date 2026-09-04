@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "analysis-availability.v1",
+  "title": "Snapshot Analysis Availability v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "sync_state", "snapshot_id", "candle_revision_checksum",
+    "analysis", "signal_suppressed", "reason"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "sync_state": { "enum": ["SYNCED", "SYNCING_ANALYSIS"] },
+    "snapshot_id": { "type": "string" },
+    "candle_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "analysis": { "type": ["object", "null"] },
+    "signal_suppressed": { "type": "boolean" },
+    "reason": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/probability-research-v2.v1.schema.json",
+  "title": "Probability Research V2 Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "research_version",
+    "research_identity",
+    "dataset_id",
+    "experiment_id",
+    "created_at",
+    "targets",
+    "screening_leader",
+    "approved_for_live_inference",
+    "official_signal_available",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "research_version": { "const": "probability_research_v2.v1" },
+    "research_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "experiment_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "targets": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "atr_multiplier",
+          "selected_candidate",
+          "nested_timeline",
+          "raw_final_metrics",
+          "calibrated_final_metrics",
+          "prior_final_metrics",
+          "screening_gate_passed",
+          "blockers",
+          "approved_for_live_inference"
+        ],
+        "properties": {
+          "approved_for_live_inference": { "const": false }
+        }
+      }
+    },
+    "screening_leader": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "const": "SCREENING_ONLY_REQUIRES_LOCKED_CONFIRMATION_RUN" }
+      }
+    },
+    "target_selection_used_final_screening_results": { "const": true },
+    "approved_for_live_inference": { "const": false },
+    "official_signal_available": { "const": false },
+    "automatic_trading_enabled": { "const": false },
+    "news_used": { "const": false },
+    "nifty_spot_volume_used": { "const": false }
+  }
+}

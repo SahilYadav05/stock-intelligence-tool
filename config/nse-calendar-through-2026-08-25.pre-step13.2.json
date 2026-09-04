@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "exchange": "NSE",
+  "segment": "CAPITAL_MARKET",
+  "timezone": "Asia/Kolkata",
+  "verified_from": "2025-01-01",
+  "verified_through": "2026-08-25",
+  "regular_session": {
+    "open": "09:15",
+    "close": "15:30"
+  },
+  "holidays": [
+    "2025-02-26",
+    "2025-03-14",
+    "2025-03-31",
+    "2025-04-10",
+    "2025-04-14",
+    "2025-04-18",
+    "2025-05-01",
+    "2025-08-15",
+    "2025-08-27",
+    "2025-10-02",
+    "2025-10-22",
+    "2025-11-05",
+    "2025-12-25",
+    "2026-01-15",
+    "2026-01-26",
+    "2026-03-03",
+    "2026-03-26",
+    "2026-03-31",
+    "2026-04-03",
+    "2026-04-14",
+    "2026-05-01",
+    "2026-05-28",
+    "2026-06-26"
+  ],
+  "special_sessions": {
+    "2025-02-01": {
+      "open": "09:15",
+      "close": "15:30"
+    },
+    "2025-10-21": {
+      "open": "13:45",
+      "close": "14:45"
+    },
+    "2026-02-01": {
+      "open": "09:15",
+      "close": "15:30"
+    }
+  },
+  "ignored_provider_observation_windows": {
+    "2025-10-21": [
+      {
+        "open": "13:30",
+        "close": "13:45",
+        "reason": "CAPITAL_MARKET_PRE_OPEN_NOT_CONTINUOUS_TRADING"
+      }
+    ]
+  },
+  "source_documents": [
+    {
+      "label": "NSE capital-market holidays 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR65587.pdf"
+    },
+    {
+      "label": "NSE Budget live trading session 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR65729.pdf"
+    },
+    {
+      "label": "NSE Muhurat trading session 2025",
+      "url": "https://nsearchives.nseindia.com/content/circulars/FAOP70320.pdf"
+    },
+    {
+      "label": "NSE capital-market holidays 2026",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR71775.pdf"
+    },
+    {
+      "label": "NSE Budget live trading session 2026",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CMTR72349.pdf"
+    },
+    {
+      "label": "NSE current market holiday register",
+      "url": "https://www.nseindia.com/resources/exchange-communication-holidays"
+    }
+  ]
+}

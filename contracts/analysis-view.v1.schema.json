@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "analysis-view.v1",
+  "title": "Chart-Synchronized Analysis View v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "analysis_id", "snapshot_id", "candle_revision_checksum",
+    "instrument_id", "decision_time", "generated_at", "data_as_of", "signal",
+    "model_version", "calibration_version", "feature_version", "market_context",
+    "reasons", "contradictory_evidence", "news", "historical_analogs",
+    "historical_signals"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "analysis_id": { "type": "string" },
+    "snapshot_id": { "type": "string" },
+    "candle_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "data_as_of": { "type": "string", "format": "date-time" },
+    "signal": { "type": "object" },
+    "model_version": { "type": "string" },
+    "calibration_version": { "type": "string" },
+    "feature_version": { "const": "price_features.v1" },
+    "market_context": {
+      "type": "object",
+      "required": ["status", "regime", "trend", "momentum", "volatility", "support_levels", "resistance_levels"],
+      "properties": {
+        "status": { "enum": ["AVAILABLE", "UNAVAILABLE"] },
+        "regime": { "type": ["string", "null"] },
+        "trend": { "type": ["string", "null"] },
+        "momentum": { "type": ["string", "null"] },
+        "volatility": { "type": ["string", "null"] },
+        "support_levels": { "type": "array", "items": { "type": "string" } },
+        "resistance_levels": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "reasons": { "type": "array", "items": { "type": "string" } },
+    "contradictory_evidence": { "type": "array", "items": { "type": "string" } },
+    "news": { "type": "object" },
+    "historical_analogs": { "type": "object" },
+    "historical_signals": { "type": "array", "items": { "type": "object" } }
+  }
+}

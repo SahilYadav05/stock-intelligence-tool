@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "replay-prediction.v1",
+  "title": "Immutable Historical Simulated-Live Prediction v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "prediction_id", "run_id", "model_id", "candidate_name",
+    "fold_index", "sample_id", "label_id", "decision_time", "data_as_of",
+    "generated_at", "input_revision_checksum", "raw_probabilities",
+    "predicted_outcome", "calibration_status", "official_signal"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "prediction_id": { "type": "string", "format": "uuid" },
+    "run_id": { "type": "string", "format": "uuid" },
+    "model_id": { "type": "string", "format": "uuid" },
+    "candidate_name": { "type": "string" },
+    "fold_index": { "type": "integer", "minimum": 0 },
+    "sample_id": { "type": "string", "format": "uuid" },
+    "label_id": { "type": "string", "format": "uuid" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "data_as_of": { "type": "string", "format": "date-time" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "raw_probabilities": {
+      "type": "object",
+      "required": ["UP", "DOWN", "NEITHER"],
+      "additionalProperties": false,
+      "properties": {
+        "UP": { "type": "number", "minimum": 0, "maximum": 1 },
+        "DOWN": { "type": "number", "minimum": 0, "maximum": 1 },
+        "NEITHER": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "predicted_outcome": { "enum": ["UP", "DOWN", "NEITHER"] },
+    "calibration_status": { "const": "UNCALIBRATED" },
+    "official_signal": { "const": null }
+  }
+}

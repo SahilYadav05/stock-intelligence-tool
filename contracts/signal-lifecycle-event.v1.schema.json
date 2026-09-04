@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "signal-lifecycle-event.v1",
+  "title": "Append-Only Signal Lifecycle Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "event_id", "signal_id", "event_type", "status",
+    "occurred_at", "observed_price", "reason"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "event_id": { "type": "string", "format": "uuid" },
+    "signal_id": { "type": "string", "format": "uuid" },
+    "event_type": { "enum": ["CREATED", "ACTIVATED", "MAINTAINED", "UPGRADED", "DOWNGRADED", "TARGET_HIT", "STOP_HIT", "INVALIDATED", "EXPIRED"] },
+    "status": { "enum": ["NO_SIGNAL", "SETUP_DETECTED", "WAITING_FOR_CONFIRMATION", "ACTIVE", "TARGET_HIT", "STOP_HIT", "INVALIDATED", "EXPIRED"] },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "observed_price": { "type": ["string", "null"] },
+    "reason": { "type": "string", "minLength": 1 }
+  }
+}

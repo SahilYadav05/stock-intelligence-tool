@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "market-state-view.v1",
+  "title": "Atomic Market State View v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "sync_state", "published_at", "snapshot",
+    "finalized_candles", "developing_candle"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "sync_state": { "const": "SYNCED" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "snapshot": { "$ref": "market-state-snapshot.v1.schema.json" },
+    "finalized_candles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "candle.v1.schema.json" }
+    },
+    "developing_candle": {
+      "oneOf": [
+        { "$ref": "candle.v1.schema.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

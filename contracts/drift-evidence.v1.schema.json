@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "drift-evidence.v1",
+  "title": "Versioned Feature and Probability Drift Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reference_id", "evaluated_at", "reference_samples", "current_samples",
+    "feature_psi", "probability_jsd", "feature_threshold", "probability_threshold"
+  ],
+  "properties": {
+    "reference_id": { "type": "string", "minLength": 1 },
+    "evaluated_at": { "type": "string", "format": "date-time" },
+    "reference_samples": { "type": "integer", "minimum": 100 },
+    "current_samples": { "type": "integer", "minimum": 100 },
+    "feature_psi": { "type": "number", "minimum": 0 },
+    "probability_jsd": { "type": "number", "minimum": 0 },
+    "feature_threshold": { "type": "number", "exclusiveMinimum": 0 },
+    "probability_threshold": { "type": "number", "exclusiveMinimum": 0 }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/shadow-policy-research.v1.schema.json",
+  "title": "Shadow Policy Research Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "step17_version",
+    "dataset_id",
+    "experiment_id",
+    "selected_policy",
+    "historical_evaluation",
+    "historical_policy_gate_passed",
+    "policy_artifact",
+    "shadow_runtime_manifest",
+    "forward_confirmation_required",
+    "approved_for_live_inference",
+    "precise_probability_display_allowed",
+    "official_signal_available",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "step17_version": { "const": "shadow_policy_research.v1" },
+    "forward_confirmation_required": { "const": true },
+    "approved_for_live_inference": { "const": false },
+    "precise_probability_display_allowed": { "const": false },
+    "official_signal_available": { "const": false },
+    "automatic_trading_enabled": { "const": false },
+    "news_used": { "const": false },
+    "nifty_spot_volume_used": { "const": false }
+  }
+}

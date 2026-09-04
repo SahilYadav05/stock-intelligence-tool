@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "calibration-run.v1",
+  "title": "Chronological Probability Calibration Run v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "calibration_id", "created_at", "artifact", "config",
+    "total_observations", "fit_observations", "evaluation_observations",
+    "raw_evaluation_metrics", "calibrated_evaluation_metrics",
+    "prior_evaluation_metrics", "brier_skill", "supported_confidence_bins",
+    "slice_gates", "release_gate_passed", "precise_probability_display_allowed",
+    "blockers", "predictions"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "calibration_id": { "type": "string", "format": "uuid" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "artifact": { "type": "object" },
+    "config": { "type": "object" },
+    "total_observations": { "type": "integer", "minimum": 1 },
+    "fit_observations": { "type": "integer", "minimum": 1 },
+    "evaluation_observations": { "type": "integer", "minimum": 1 },
+    "raw_evaluation_metrics": { "type": "object" },
+    "calibrated_evaluation_metrics": { "type": "object" },
+    "prior_evaluation_metrics": { "type": "object" },
+    "brier_skill": { "type": "number" },
+    "supported_confidence_bins": { "type": "array", "items": { "type": "string" } },
+    "slice_gates": { "type": "array", "items": { "type": "object" } },
+    "release_gate_passed": { "type": "boolean" },
+    "precise_probability_display_allowed": { "type": "boolean" },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "predictions": { "type": "array", "items": { "type": "object" } }
+  }
+}

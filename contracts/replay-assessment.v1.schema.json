@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "replay-assessment.v1",
+  "title": "Historical Replay Outcome Assessment v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "assessment_id", "prediction_id", "label_id",
+    "assessed_at", "actual_outcome", "predicted_outcome", "correct"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "assessment_id": { "type": "string", "format": "uuid" },
+    "prediction_id": { "type": "string", "format": "uuid" },
+    "label_id": { "type": "string", "format": "uuid" },
+    "assessed_at": { "type": "string", "format": "date-time" },
+    "actual_outcome": { "enum": ["UP", "DOWN", "NEITHER"] },
+    "predicted_outcome": { "enum": ["UP", "DOWN", "NEITHER"] },
+    "correct": { "type": "boolean" }
+  }
+}

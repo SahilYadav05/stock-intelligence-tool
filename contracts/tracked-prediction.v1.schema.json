@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tracked-prediction.v1",
+  "title": "Immutable Live Prediction Registration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "prediction_id", "signal_id", "snapshot_id", "instrument_id",
+    "decision_time", "registered_at", "direction", "predicted_outcome", "probabilities",
+    "model_version", "calibration_version", "feature_version", "signal_policy_version",
+    "input_revision_checksum"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "prediction_id": { "type": "string", "minLength": 1 },
+    "signal_id": { "type": "string", "minLength": 1 },
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "registered_at": { "type": "string", "format": "date-time" },
+    "direction": { "enum": ["BUY", "SELL", "WAIT"] },
+    "predicted_outcome": { "enum": ["UP", "DOWN", "NEITHER", null] },
+    "probabilities": { "type": ["object", "null"] },
+    "model_version": { "type": "string" },
+    "calibration_version": { "type": "string" },
+    "feature_version": { "type": "string" },
+    "signal_policy_version": { "type": "string" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

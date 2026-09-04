@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "security-audit-event.v1",
+  "title": "Append-Only Security Audit Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id", "occurred_at", "category", "action", "actor", "details",
+    "previous_hash", "event_hash"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "minLength": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "category": { "type": "string", "minLength": 1 },
+    "action": { "type": "string", "minLength": 1 },
+    "actor": { "type": "string", "minLength": 1 },
+    "details": { "type": "object" },
+    "previous_hash": { "$ref": "#/$defs/sha256" },
+    "event_hash": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

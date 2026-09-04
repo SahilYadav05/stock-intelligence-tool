@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/real-data-research.v1.schema.json",
+  "title": "Real Data Research Report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "run_id",
+    "calibration_id",
+    "feature_version",
+    "label_version",
+    "selected_candidate",
+    "dataset",
+    "prior_baseline_metrics",
+    "selected_candidate_metrics",
+    "calibration",
+    "research_gate",
+    "persistence",
+    "market_inputs",
+    "news_status",
+    "official_signal_available",
+    "approved_for_live_inference",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "calibration_id": { "type": "string", "minLength": 1 },
+    "feature_version": { "type": "string", "minLength": 1 },
+    "label_version": { "type": "string", "minLength": 1 },
+    "selected_candidate": { "type": "string", "minLength": 1 },
+    "dataset": { "type": "object" },
+    "prior_baseline_metrics": { "type": "object" },
+    "selected_candidate_metrics": { "type": "object" },
+    "calibration": {
+      "type": "object",
+      "required": ["release_gate_passed", "blockers", "temperature"],
+      "properties": {
+        "release_gate_passed": { "type": "boolean" },
+        "blockers": { "type": "array", "items": { "type": "string" } },
+        "temperature": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "research_gate": {
+      "type": "object",
+      "required": [
+        "gate_version",
+        "gate_identity",
+        "passed",
+        "blockers",
+        "approved_for_live_inference"
+      ],
+      "properties": {
+        "gate_version": { "const": "real_data_research_gate.v1" },
+        "gate_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "passed": { "type": "boolean" },
+        "blockers": { "type": "array", "items": { "type": "string" } },
+        "approved_for_live_inference": { "const": false }
+      }
+    },
+    "persistence": { "type": "object" },
+    "market_inputs": {
+      "type": "object",
+      "required": [
+        "finalized_5m_primary",
+        "finalized_15m_context",
+        "finalized_1h_context",
+        "developing_candle_used",
+        "nifty_spot_volume_used",
+        "vwap_used",
+        "news_used"
+      ],
+      "properties": {
+        "finalized_5m_primary": { "const": true },
+        "finalized_15m_context": { "const": true },
+        "finalized_1h_context": { "const": true },
+        "developing_candle_used": { "const": false },
+        "nifty_spot_volume_used": { "const": false },
+        "vwap_used": { "const": false },
+        "news_used": { "const": false }
+      }
+    },
+    "news_status": { "const": "NOT_INCLUDED_IN_STEP_14" },
+    "official_signal_available": { "const": false },
+    "approved_for_live_inference": { "const": false },
+    "automatic_trading_enabled": { "const": false }
+  }
+}

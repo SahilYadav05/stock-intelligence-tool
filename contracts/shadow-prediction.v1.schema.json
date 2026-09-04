@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stock-intelligence.local/contracts/shadow-prediction.v1.schema.json",
+  "title": "Immutable Shadow Prediction",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "prediction_id",
+    "snapshot_id",
+    "decision_time",
+    "data_as_of",
+    "generated_at",
+    "outcome_due_at",
+    "input_revision_checksum",
+    "model_artifact_sha256",
+    "policy_artifact_sha256",
+    "raw_probabilities",
+    "calibrated_probabilities",
+    "shadow_candidate_direction",
+    "official_signal",
+    "precise_probability_display_allowed",
+    "shadow_only",
+    "automatic_trading_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "shadow_candidate_direction": { "enum": ["BUY", "SELL", "WAIT"] },
+    "price_action_analysis": {
+      "description": "Optional snapshot-bound research-only causal price-action record.",
+      "type": "object"
+    },
+    "official_signal": { "type": "null" },
+    "precise_probability_display_allowed": { "const": false },
+    "shadow_only": { "const": true },
+    "automatic_trading_enabled": { "const": false }
+  }
+}

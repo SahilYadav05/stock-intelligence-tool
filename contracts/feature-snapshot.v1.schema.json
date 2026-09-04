@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feature-snapshot.v1",
+  "title": "Quantitative Feature Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "feature_snapshot_id", "feature_version",
+    "feature_set_hash", "market_snapshot_id", "instrument_id",
+    "decision_time", "input_revision_checksum", "values", "is_ready", "blockers"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "feature_snapshot_id": { "type": "string", "format": "uuid" },
+    "feature_version": { "const": "price_features.v1" },
+    "feature_set_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "market_snapshot_id": { "type": "string", "format": "uuid" },
+    "instrument_id": { "type": "string", "minLength": 1 },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "values": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" }, { "type": "integer" },
+          { "type": "boolean" }, { "type": "null" }
+        ]
+      }
+    },
+    "is_ready": { "type": "boolean" },
+    "blockers": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "signal-decision.v1",
+  "title": "Immutable Deterministic Signal Decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "signal_id", "prediction_id", "calibration_id",
+    "snapshot_id", "instrument_id", "decision_time", "created_at", "expires_at",
+    "direction", "lifecycle_status", "probabilities", "expected_atr", "risk_levels",
+    "blockers", "signal_policy_version", "risk_policy_version",
+    "input_revision_checksum", "automatic_execution"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "signal_id": { "type": "string", "format": "uuid" },
+    "prediction_id": { "type": "string" },
+    "calibration_id": { "type": "string" },
+    "snapshot_id": { "type": "string" },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "direction": { "enum": ["BUY", "SELL", "WAIT"] },
+    "lifecycle_status": { "enum": ["NO_SIGNAL", "ACTIVE"] },
+    "probabilities": { "type": ["object", "null"] },
+    "expected_atr": { "type": ["number", "null"] },
+    "risk_levels": { "type": ["object", "null"] },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "signal_policy_version": { "const": "wait_first_atr_policy.v1" },
+    "risk_policy_version": { "const": "atr_levels.v1" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "automatic_execution": { "const": false }
+  }
+}

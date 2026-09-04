@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "calibrated-prediction.v1",
+  "title": "Immutable Calibrated Prediction v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "calibrated_prediction_id", "calibration_id",
+    "source_prediction_id", "decision_time", "calibrated_probabilities",
+    "actual_outcome", "evaluation_partition"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "calibrated_prediction_id": { "type": "string", "format": "uuid" },
+    "calibration_id": { "type": "string", "format": "uuid" },
+    "source_prediction_id": { "type": "string", "format": "uuid" },
+    "decision_time": { "type": "string", "format": "date-time" },
+    "calibrated_probabilities": {
+      "type": "object",
+      "required": ["DOWN", "NEITHER", "UP"],
+      "additionalProperties": false,
+      "properties": {
+        "DOWN": { "type": "number", "minimum": 0, "maximum": 1 },
+        "NEITHER": { "type": "number", "minimum": 0, "maximum": 1 },
+        "UP": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "actual_outcome": { "enum": ["DOWN", "NEITHER", "UP"] },
+    "evaluation_partition": { "const": true }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paper-trade.v1",
+  "title": "Immutable Paper Trade Plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "paper_trade_id", "signal_id", "prediction_id", "snapshot_id",
+    "instrument_id", "created_at", "expires_at", "direction", "status", "entry_low",
+    "entry_high", "stop", "target1", "target2", "target3", "model_version",
+    "calibration_version", "signal_policy_version", "input_revision_checksum", "unit",
+    "automatic_execution"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "paper_trade_id": { "type": "string", "format": "uuid" },
+    "signal_id": { "type": "string", "minLength": 1 },
+    "prediction_id": { "type": "string", "minLength": 1 },
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "direction": { "enum": ["BUY", "SELL"] },
+    "status": { "const": "PLANNED" },
+    "entry_low": { "type": "string" },
+    "entry_high": { "type": "string" },
+    "stop": { "type": "string" },
+    "target1": { "type": "string" },
+    "target2": { "type": "string" },
+    "target3": { "type": "string" },
+    "model_version": { "type": "string" },
+    "calibration_version": { "type": "string" },
+    "signal_policy_version": { "type": "string" },
+    "input_revision_checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "unit": { "const": "NIFTY_INDEX_POINTS" },
+    "automatic_execution": { "const": false }
+  }
+}

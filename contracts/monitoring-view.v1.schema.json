@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "monitoring-view.v1",
+  "title": "Point-in-Time Operational and Model Monitoring View v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "instrument_id", "generated_at", "overall_status", "checks",
+    "model_drift_status", "probability_drift_status", "alerting_enabled"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "instrument_id": { "const": "NIFTY50_SPOT" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "overall_status": { "enum": ["OK", "WARN", "CRITICAL", "UNAVAILABLE"] },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "status", "observed_at", "detail"]
+      }
+    },
+    "model_drift_status": { "enum": ["READY", "INSUFFICIENT_SAMPLE", "UNAVAILABLE", "BREACHED"] },
+    "probability_drift_status": { "enum": ["READY", "INSUFFICIENT_SAMPLE", "UNAVAILABLE", "BREACHED"] },
+    "alerting_enabled": { "type": "boolean" }
+  }
+}

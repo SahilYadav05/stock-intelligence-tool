@@ -1,0 +1,30 @@
+STEP 18F - BASELINE-CONTROLLED DIRECTION-SPECIFIC RESEARCH
+
+Run from Command Prompt in the project root.
+
+1. Verify the overlay:
+
+   npm.cmd run check:step18f
+
+2. Run the complete regression suite:
+
+   npm.cmd run test:windows
+
+3. Confirm .env still contains:
+
+   LIVE_SIGNAL_KILL_SWITCH=true
+
+4. Run the research:
+
+   npm.cmd run research:baseline-controlled:windows
+
+Allow approximately 60-180 minutes. The newest immutable report is written to:
+
+   artifacts\research\baseline-controlled-v1\
+
+Send the complete terminal output and the resulting JSON report. Do not send
+.env, credentials, data/research.sqlite3, or context bundle files.
+
+A failed gate is a valid result. Never remove blockers or relax thresholds to
+force a release. The historical period remains previously seen and cannot serve
+as final forward confirmation.

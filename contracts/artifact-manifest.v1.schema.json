@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artifact-manifest.v1",
+  "title": "Approved Model Artifact Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "release_id", "created_at", "model_version", "model_sha256", "calibration_version",
+    "calibration_sha256", "feature_version", "feature_set_hash", "label_version",
+    "label_definition_hash", "signal_policy_version", "evaluation_run_id",
+    "calibration_ece", "positive_brier_skill"
+  ],
+  "properties": {
+    "release_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "model_version": { "type": "string", "minLength": 1 },
+    "model_sha256": { "$ref": "#/$defs/sha256" },
+    "calibration_version": { "type": "string", "minLength": 1 },
+    "calibration_sha256": { "$ref": "#/$defs/sha256" },
+    "feature_version": { "type": "string", "minLength": 1 },
+    "feature_set_hash": { "$ref": "#/$defs/sha256" },
+    "label_version": { "type": "string", "minLength": 1 },
+    "label_definition_hash": { "$ref": "#/$defs/sha256" },
+    "signal_policy_version": { "type": "string", "minLength": 1 },
+    "evaluation_run_id": { "type": "string", "minLength": 1 },
+    "calibration_ece": { "type": "number", "minimum": 0, "maximum": 1 },
+    "positive_brier_skill": { "type": "boolean" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

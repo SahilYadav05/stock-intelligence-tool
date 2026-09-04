@@ -1,0 +1,41 @@
+STEP 18D - SELECTIVE UTILITY + CONFORMAL DOWNSIDE RESEARCH
+
+Use Command Prompt in:
+C:\Users\sy771\Downloads\stock-intelligence
+
+1. Back up the files this package replaces:
+
+tar -a -c -f pre-step18d-backup.zip package.json
+
+2. Extract the supplied package:
+
+tar -xf "%USERPROFILE%\Downloads\step18d-selective-utility.zip" -C .
+
+3. Run structural and backend checks:
+
+npm.cmd run check:step18d
+npm.cmd run test:backend:windows
+
+4. Run the research:
+
+npm.cmd run research:selective-utility:windows
+
+The command automatically uses the latest immutable Bank Nifty/India VIX context bundle produced by Step 18C. It may take 30-90 minutes on a local CPU.
+
+5. Send the terminal output. Preserve the full JSON report printed at report_path under:
+
+artifacts\research\selective-utility-v1\
+
+PASS/FAIL RULES
+
+- A completed command is not a released model.
+- LONG and SHORT utility models must beat their chronological train-mean baselines.
+- Their session-bootstrap lower 95% MSE-skill bounds must be positive.
+- Rank correlation must exceed the locked gate.
+- The context model must beat its NIFTY-only ablation.
+- The conformal lower estimate must achieve acceptable later-fold coverage.
+- The policy must have at least 100 trades, 30 BUY and 30 SELL decisions.
+- Profit factor, drawdown and lower 95% average R must all pass.
+- Forward confirmation remains mandatory because this historical period has already been examined.
+- Do not change thresholds after viewing the output.
+- Official signals, precise probabilities and automatic trading remain disabled.

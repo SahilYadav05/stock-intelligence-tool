@@ -71,3 +71,4 @@ next-env.d.ts
 # Internal development instructions / milestone notes 
 /STEP-*.md 
 /STEP-*.txt
+/.openai/

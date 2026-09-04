@@ -67,3 +67,7 @@ next-env.d.ts
 /SahilYadav05/
 /stock-intelligence-tool/
 /project_tree.txt
+ 
+# Internal development instructions / milestone notes 
+/STEP-*.md 
+/STEP-*.txt
